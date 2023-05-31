@@ -7,6 +7,7 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage: storage });
 
 router.post('/images', upload.single('image'), imagesController.uploadImage);
+router.get('/images/history', imagesController.getHistory);
 router.get('/images/byId/:imageId', imagesController.getImageById);
 router.get('/images/last', imagesController.getLastImage);
 

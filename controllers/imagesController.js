@@ -5,7 +5,8 @@ const uploadImage = async (req, res) => {
         const newImage = new Image({
             imageData: req.file.buffer,
             contentType: req.file.mimetype,
-            date: Date.now()
+            date: Date.now(),
+            isAuthorized: true
         });
 
         const savedImage = await newImage.save();
@@ -46,4 +47,19 @@ const getLastImage = async (req, res) => {
     }
 }
 
-module.exports = { uploadImage, getImageById, getLastImage };
+const getHistory = async (req, res) => {
+    try {
+        const images = await Image.find({}).sort({data: "desc"});
+        if (images) {
+            res.send(JSON.stringify(images.slice(0, 9)));
+        }
+        else {
+            res.status(404).json({ message: 'No images' });
+        }
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: 'Error retrieving images'});
+    }
+}
+
+module.exports = { uploadImage, getImageById, getLastImage, getHistory };
