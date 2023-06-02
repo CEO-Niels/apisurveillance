@@ -9,7 +9,7 @@ connectDB();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
+app.use(express.text());
 app.use('/api', imagesRoutes);
 
 app.listen(port, () => {
