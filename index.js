@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const imagesRoutes = require('./routes/imagesRoutes');
+const cors = require('./node_modules/cors');
 const connectDB = require("./database/db");
 const app = express();
 const port = process.env.PORT || 3000;
@@ -10,6 +11,7 @@ connectDB();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.text());
+app.use(cors());
 app.use('/api', imagesRoutes);
 app.use((err, req, res, next) => {
     console.error(err);
