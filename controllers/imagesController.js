@@ -1,10 +1,13 @@
 const Image = require('../models/imageModel');
-
+const Buffer = require('buffer').Buffer;
 const uploadImage = async (req, res) => {
     try {
+        // Decode base64 to buffer
+        const imageData = Buffer.from(req.body, 'base64');
+
         const newImage = new Image({
-            imageData: req.file.buffer,
-            contentType: req.file.mimetype,
+            imageData: imageData,
+            contentType: 'image/jpeg',  // This is assuming that you're always sending JPEG images
             date: Date.now(),
             isAuthorized: true
         });
