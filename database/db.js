@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 // Configuration de la connexion à la base de données MongoDB
 const connectDB = async () => {
     try {
-        const connection = await mongoose.connect('mongodb+srv://nielsbeaumont:OuPzJASHRO5pxACm@bielsneaumont.m5btu54.mongodb.net/test', {
+        const connection = await mongoose.connect('mongodb://45.147.99.116/test', {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });
