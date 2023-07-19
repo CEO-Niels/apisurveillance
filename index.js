@@ -6,6 +6,10 @@ const connectDB = require("./database/db");
 const app = express();
 const port = process.env.PORT || 3000;
 
+// Ajoutez ces deux lignes pour servir les fichiers statiques du dossier "public"
+const path = require('path');
+app.use(express.static(path.join(__dirname, 'public')));
+
 connectDB();
 
 app.use(bodyParser.urlencoded({ extended: false }));
